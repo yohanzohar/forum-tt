@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{user.username}}</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-info">
+	<a class="navbar-brand text-warning" href="/">Messages</a>
+	{% if 'username' in session %}
+	<a class="navbar-brand text-warning" href="/logout/">Logout</a>
+	{% else %}
+	<a class="navbar-brand text-warning" href="/login/">Login</a>
+	{% endif %}
+	</nav>
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row align-items-center mb-3 mt-3">
+      <div class="col-sm-8 offset-2 ">
+		<div class="card ">
+    		<div class="card-body">
+    			<div class="card-footer text-center" style="background-color: #e3f2fd;" >{{ user.username}}</div><br>
+
+
+
+    			{% with error_messages = get_flashed_messages() %}
+        			{% if error_messages %}
+        			<ul>
+           				 {% for error_message in error_messages %}
+            		<li>{{ error_message }}</li>
+           				 {% endfor %}
+        			</ul>
+        			{% endif %}
+      			{% endwith %}
+
+				{% if 'username' in session and user.username == session['username'] %}
+				{% if 'username' in session and user.username == session['username'] %}
+					 <div class="col mt-3 mx-auto text-primary font-italic ">
+					 <form method="POST" action="/profil/{{ user.id }}/password">
+						<label> Old password</label><br>
+				    <input type="password" class="form-control mx-auto " name="old-password"> <br>
+				    <label> New Password</label><br>
+				    <input type="password" class="form-control mx-auto " name="new-password"> <br>
+				    <button type="submit" class="btn btn-outline-primary btn-block">save</button>
+				   </form>
+				   <form method="POST" action="/profil/{{ user.id }}/username">
+				    <label> New username</label><br>
+				    <input type="text" class="form-control mx-auto " name="new-username"> <br>
+				    <button type="submit" class="btn btn-outline-primary btn-block">save</button>
+				   </form>
+				   {% endif %}
+								{% endif %}
+
+  
+
+				<ul>
+					{% for message in messages %}
+					<li>{{ message.text }}</li>
+					{% endfor %}
+				</ul>
+
+
+
+
+
+			</div>
+		</div>
+	 </div>
+</div>
+</div>
+
+
+
+
+
+</body>
+</html>
+
+
+

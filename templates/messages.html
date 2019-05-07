@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{discussion.title}}</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<style type="text/css">
+        .container{
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+
+		<nav class="navbar navbar-danger bg-danger">
+        	<a class="navbar-brand text-dark" href="/">repondre aux message</a>
+            {% if 'username' in session %}
+            <a href="/logout/">logout</a>
+            {%else %}
+            <a href="/login/">login</a>
+            {% endif %}
+    	</nav>
+        <div class="col mt-4 mx-auto text-primary font-italic ">
+            <form method="POST" action="/messages/{{ discussion.id}} ">
+                <textarea class="form-control" name="text"></textarea>
+                <button type="submit">sumbit</button>
+                    <h4>{{discussion.title}}</h4>
+                {% for message in messages %}
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <br>
+                                <li class="card-title text-center" style="color:#000099"><a href="/messages/{{ discussion_id}}">{{ message.text }}</a></li><br>
+                                <li>
+                                    <label>{{message.user.username}}</label>
+                                </li>
+                                <a href="/profil/{{message.user.id}}">{{message.user.username}}</a>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
+        
+</body>
+</html>

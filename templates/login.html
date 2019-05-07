@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style type="text/css">
+        .container{ 
+            width: 500px;
+        }
+        .card{
+            width: 100%;
+        }
+    </style>    
+
+</head>
+<body>
+  <nav class="navbar navbar-warning bg-warning">
+    <a href="#" class="navbar-brand text-dark" >SE CONNECTER</a> 
+  </nav>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-group">
+                <div class="form-group">
+                  {% with error_messages = get_flashed_messages() %}
+                  {% if error_messages %}
+                  <ul>
+                    {% for error_message in error_messages %}
+                    <li>{{ error_message }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                  {% endwith %}
+                <form method="POST" action="/login/">
+                  <label for="exampleDropdownFormUsername1">Username</label>
+                  <input type="username" name="username" class="form-control" id="exampleDropdownFormUsername1" placeholder="12345">
+                  <label for="exampleDropdownFormPassword1">Password</label>
+                  <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                  <button type="submit" class="btn btn-outline-info  btn-block">Login</button>
+                </form>
+          </div>  
+        </div>
+      </div>
+      </div>
+</body>
+</html>
